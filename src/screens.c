@@ -9,7 +9,7 @@ void show_title_screen(){
     clear_screen();
     set_bkg_data(0 ,LOGO_SIZE, logo_data);    
     set_bkg_tiles(0,0,LOGO_WIDTH, LOGO_HEIGHT,logo_map);
-    move_win(WIN_X, SPLASH_WIN_Y);
+    move_win(WIN_X, WIN_HALF_SCREEN);
     print_text(5, 2, "PRESS START", WIN,0);
     print_text(5, 5, "CREATED BY", WIN,0);
     print_text(3, 6, "WYATT FERGUSON", WIN,0);
@@ -23,7 +23,7 @@ void show_title_screen(){
 void show_gameover_screen(){
     state = GAMEOVER;
     clear_screen();
-    move_win(WIN_X, 0);
+    move_win(WIN_X, WIN_FULL_SCREEN);
     print_text(6, 5, "GAME OVER", WIN,0);
     print_number(6,9,score, "SCORE ", WIN);
 }
@@ -34,10 +34,9 @@ void show_win_screen(){
     clear_screen();
     set_bkg_data(0 ,TROPHY_SIZE, trophy_data);    
     set_bkg_tiles(7,3,TROPHY_WIDTH, TROPHY_HEIGHT,trophy_map);
-    move_win(WIN_X, SPLASH_WIN_Y);
+    move_win(WIN_X, WIN_HALF_SCREEN);
     print_text(7, 1, "WINNER", WIN,0);
     print_number(5,3,score, "SCORE ", WIN);
-    delay(SCREEN_DELAY);
 }
 
 
@@ -49,7 +48,7 @@ void show_play_screen(){
     clear_screen();
     state = PLAYING;
     init_board();
-    move_win(WIN_X, PLAY_WIN_Y);
+    move_win(WIN_X, WIN_FOOTER);
     reset_board();
 }
 
