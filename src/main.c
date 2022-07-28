@@ -5,7 +5,6 @@
 #include "screens.c"
 #include "font.c"
 #include "board.c"
-#include "sounds.c"
 
 
 /**
@@ -13,7 +12,6 @@
  * 
  */
 void setup(){
-    enable_sound();
     SHOW_BKG;
     SHOW_WIN;
     SHOW_SPRITES;
@@ -24,47 +22,43 @@ void setup(){
 
 
 void main() {
-    UINT8 button_pressed = 0;
+    UINT8 btn = 0;
 
     setup();
 
     while (1) {
-        button_pressed = joypad();
+        btn = waitpad(J_A | J_B | J_UP | J_DOWN | J_LEFT | J_RIGHT | J_START);
+        waitpadup();
 
     	switch (state){
             case TITLE:
                 seed_rand();
-                if(button_pressed & J_START) {
+                if(btn == J_START) {
                     show_play_screen();
                 }
                 break;
                 
             case PLAYING:
-                if(button_pressed & J_UP){
+                if(btn == J_UP){
                     update_board(UP);
-                }else if(button_pressed & J_DOWN){
+                }else if(btn == J_DOWN){
                     update_board(DOWN);
-                }else if(button_pressed & J_RIGHT){
+                }else if(btn == J_RIGHT){
                     update_board(RIGHT);
-                }else if(button_pressed & J_LEFT){
+                }else if(btn == J_LEFT){
                     update_board(LEFT);
-                }else if(button_pressed & J_SELECT){
-                    show_win_screen();
                 }
 
-                if(button_pressed){
-                    delay(BUTTON_DELAY);
-                }
                 break;
 
             case WINNER:
-                if(button_pressed & J_START){
+                if(btn == J_START){
                     show_title_screen();
                 }
                 break;
 
             case GAMEOVER:
-                if(button_pressed & J_START){
+                if(btn == J_START){
                     show_title_screen();
                 }
                 break;

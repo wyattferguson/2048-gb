@@ -25,6 +25,7 @@ UINT8 row = 0;
 UINT8 col = 0;
 UINT16 score = 0;
 UINT8 filled_blocks = 0;
+
 UBYTE moved = 0;
 UBYTE winner = 0;
 

@@ -53,12 +53,12 @@ const unsigned char font_tiles[] =
 #define BKG 1
 
 // font settings
-#define FONT_MEMORY_START 36
+#define FONT_MEMORY_START (LOGO_SIZE)
 #define FONT_SIZE 38
 #define FONT_CHAR_START (1 + FONT_MEMORY_START)
 #define FONT_NUM_START (27 + FONT_MEMORY_START)
 #define FONT_EXTRA (36 + FONT_MEMORY_START)
-#define FONT_BLANK (0 + FONT_MEMORY_START)
+#define FONT_BLANK (FONT_MEMORY_START)
 
 
 void setup_font(void);

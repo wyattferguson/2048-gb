@@ -1,18 +1,15 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define BUTTON_DELAY 100 // add delay between button presses
-#define SCREEN_DELAY 150
-
 // screen in 8px chunks
 #define GRID_HEIGHT 18
 #define GRID_WIDTH 20
 
 // window states
 #define WIN_X 7
-#define PLAY_WIN_Y 130
-#define TUT_WIN_Y 10
-#define SPLASH_WIN_Y 80
+#define WIN_FOOTER 130
+#define WIN_HALF_SCREEN 80
+#define WIN_FULL_SCREEN 0
 
 // logo
 #define LOGO_SIZE 35
