@@ -10,12 +10,17 @@ This is a working port of 2048 for the classic Game Boy. Its a addictive little 
 
 For curious its built with GBDK 2020 and heres the [GBDK 2020 C Guidelines](https://gbdk-2020.github.io/gbdk-2020/docs/api/docs_coding_guidelines.html#docs_c_tutorials) this will walk you through some of the limitations and tricks to make C run effeciently on the Game Boy. So if your wondering why so many things are globals or why I dont do things a certain its mostly because the game boy hardware really doesnt like those things.
 
+
 ## :postbox: Contact & Support
 
-Created by [Wyatt Ferguson](@wyattxdev@mastodon.social)
+Created by [Wyatt Ferguson](https://twitter.com/wyattxdev)
 
-For any comments or questions message me on [Mastodon](@wyattxdev@mastodon.social)
+For any questions or comments you can send them to me on my socials:
+### :shaved_ice: Follow on [Mastodon @wyattxdev@mastodon.social](@wyattxdev@mastodon.social)
+### :tropical_drink: Follow on [Twitter @wyattxdev](https://twitter.com/wyattxdev)
 
-[:coffee: Buy Me A Coffee](https://www.buymeacoffee.com/wyattferguson)
+
+If you find this useful and want to tip me a little coffee money:
+### :coffee: [Buy Me A Coffee](https://www.buymeacoffee.com/wyattferguson)
 
 <br>
