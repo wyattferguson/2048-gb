@@ -12,9 +12,9 @@ For curious its built with GBDK 2020 and heres the [GBDK 2020 C Guidelines](http
 
 ## :postbox: Contact & Support
 
-Created by [Wyatt Ferguson](wyattxdev@duck.com)
+Created by [Wyatt Ferguson](@wyattxdev@mastodon.social)
 
-For any comments or questions your can email me at [wyattxdev@duck.com](wyattxdev@duck.com)
+For any comments or questions message me on [Mastodon](@wyattxdev@mastodon.social)
 
 [:coffee: Buy Me A Coffee](https://www.buymeacoffee.com/wyattferguson)
 
