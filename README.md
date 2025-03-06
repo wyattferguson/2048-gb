@@ -13,9 +13,11 @@ For curious its built with GBDK 2020 and heres the [GBDK 2020 C Guidelines](http
 
 ## :postbox: Contact & Support
 
-Created by [Wyatt Ferguson](https://wyattf.bsky.social)
+Created by [Wyatt Ferguson](https://github.com/wyattferguson)
 
 For any questions or comments heres how you can reach me:
+
+### :octocat: Follow me on [Github @wyattferguson](https://github.com/wyattferguson)
 ### :mailbox_with_mail: Email me at [wyattxdev@duck.com](wyattxdev@duck.com)
 ### :tropical_drink: Follow on [BlueSky @wyattf](https://wyattf.bsky.social)
 
