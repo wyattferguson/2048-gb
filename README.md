@@ -1,6 +1,6 @@
 # :joystick: 2048 - Game Boy Edition
 
-This is a working port of 2048 for the classic Game Boy. Its a addictive little game that some of you might know as 'THREES'. Simply fire up your favorite Game Boy emulator and load the `2048.gb` file. All the details of how the 2048 works can be found [here]https://en.wikipedia.org/wiki/2048_(video_game))
+This is a working port of 2048 for the classic Game Boy. Its a addictive little game that some of you might know as 'THREES'. Simply fire up your favorite Game Boy emulator and load the `2048.gb` file. All the details of how the 2048 works can be found [here](https://en.wikipedia.org/wiki/2048_(video_game))
 <br><br>
 ![s1](https://user-images.githubusercontent.com/503975/179377941-3c7ea943-3749-40a0-85d5-703bbf000ee3.png)
 ![s3](https://user-images.githubusercontent.com/503975/179377933-3c52fcc7-654d-4d86-be75-9132fdcedb20.png)
