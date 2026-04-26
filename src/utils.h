@@ -6,7 +6,7 @@
 #include <rand.h>
 
 
-void seed_rand();
+void seed_rand(void);
 UINT8 rand_num(UINT8 low, UINT8 high);
 
 #endif

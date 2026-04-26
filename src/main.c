@@ -1,17 +1,17 @@
 
 #include <gb/gb.h>
 #include "config.h"
-#include "utils.c"
-#include "screens.c"
-#include "font.c"
-#include "board.c"
+#include "utils.h"
+#include "screens.h"
+#include "font.h"
+#include "board.h"
 
 
 /**
  * @brief Initialize GB settings and show title screen
- * 
+ *
  */
-void setup(){
+void setup(void){
     SHOW_BKG;
     SHOW_WIN;
     SHOW_SPRITES;
@@ -21,7 +21,7 @@ void setup(){
 }
 
 
-void main() {
+void main(void) {
     UINT8 btn = 0;
 
     setup();
@@ -37,7 +37,7 @@ void main() {
                     show_play_screen();
                 }
                 break;
-                
+
             case PLAYING:
                 if(btn == J_UP){
                     update_board(UP);
@@ -63,7 +63,7 @@ void main() {
                 }
                 break;
         }
-        
+
     	wait_vbl_done();
     }
 }

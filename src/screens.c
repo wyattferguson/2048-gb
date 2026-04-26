@@ -1,13 +1,15 @@
 #include "screens.h"
 
+enum game_states state = TITLE;
+
 /**
- * @brief Display main title screen 
- * 
+ * @brief Display main title screen
+ *
  */
-void show_title_screen(){
+void show_title_screen(void){
     state = TITLE;
     clear_screen();
-    set_bkg_data(0 ,LOGO_SIZE, logo_data);    
+    set_bkg_data(0 ,LOGO_SIZE, logo_data);
     set_bkg_tiles(0,0,LOGO_WIDTH, LOGO_HEIGHT,logo_map);
     move_win(WIN_X, WIN_HALF_SCREEN);
     print_text(5, 2, "PRESS START", WIN,0);
@@ -18,9 +20,9 @@ void show_title_screen(){
 
 /**
  * @brief Show game over screen and clear sprites
- * 
+ *
  */
-void show_gameover_screen(){
+void show_gameover_screen(void){
     state = GAMEOVER;
     clear_screen();
     move_win(WIN_X, WIN_FULL_SCREEN);
@@ -29,10 +31,10 @@ void show_gameover_screen(){
 }
 
 
-void show_win_screen(){
+void show_win_screen(void){
     state = WINNER;
     clear_screen();
-    set_bkg_data(0 ,TROPHY_SIZE, trophy_data);    
+    set_bkg_data(0 ,TROPHY_SIZE, trophy_data);
     set_bkg_tiles(7,3,TROPHY_WIDTH, TROPHY_HEIGHT,trophy_map);
     move_win(WIN_X, WIN_HALF_SCREEN);
     print_text(7, 1, "WINNER", WIN,0);
@@ -42,22 +44,24 @@ void show_win_screen(){
 
 /**
  * @brief Display main gameplay screen
- * 
+ *
  */
-void show_play_screen(){
+void show_play_screen(void){
     clear_screen();
     state = PLAYING;
     init_board();
     move_win(WIN_X, WIN_FOOTER);
     reset_board();
+    draw_board();
+    print_number(0,0,score, "SCORE ", WIN);
 }
 
 
 /**
  * @brief Clear screen and window
- * 
+ *
  */
-void clear_screen(){
+void clear_screen(void){
     wait_vbl_done();
     DISPLAY_OFF;
 

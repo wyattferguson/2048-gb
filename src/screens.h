@@ -6,17 +6,19 @@
 #include "board.h"
 #include "font.h"
 
-#include "sprites/logo_data.c"
-#include "sprites/logo_map.c"
-#include "sprites/trophy_data.c"
-#include "sprites/trophy_map.c"
+extern const unsigned char logo_data[];
+extern const unsigned char logo_map[];
+extern const unsigned char trophy_data[];
+extern const unsigned char trophy_map[];
 
 enum game_states {
     TITLE,
     PLAYING,
     WINNER,
     GAMEOVER
-} state = TITLE;
+} ;
+
+extern enum game_states state;
 
 
 void show_title_screen(void);

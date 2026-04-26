@@ -8,8 +8,8 @@
 #include "screens.h"
 #include "font.h"
 
-#include "sprites/block_tiles.c"
-#include "sprites/number_tiles.c"
+extern const unsigned char block_tiles[];
+extern const unsigned char number_tiles[];
 
 #define BOARD_SIZE 5
 #define BOARD_X_OFFSET 3
@@ -20,25 +20,25 @@
 #define NUMBER_TILE_START 9
 #define EMPTY_TILE_START 1
 
-UINT16 board[BOARD_SIZE][BOARD_SIZE];
-UINT8 row = 0;
-UINT8 col = 0;
-UINT16 score = 0;
-UINT8 filled_blocks = 0;
+extern UINT16 board[BOARD_SIZE][BOARD_SIZE];
+extern UINT8 row;
+extern UINT8 col;
+extern UINT16 score;
+extern UINT8 filled_blocks;
 
-UBYTE moved = 0;
-UBYTE winner = 0;
+extern UBYTE moved;
+extern UBYTE winner;
 
-void init_board();
-void reset_board();
+void init_board(void);
+void reset_board(void);
 void update_board(direction d);
 void merge_block(UINT8 r1, UINT8 c1, UINT8 r2, UINT8 c2);
 void move_block(UINT8 r1, UINT8 c1, UINT8 r2, UINT8 c2);
 void scan_board(void (*update_blocks)(UINT8 r1, UINT8 c1, UINT8 r2, UINT8 c2), direction d);
 void slide_board(direction d);
-void draw_board();
+void draw_board(void);
 UINT8 number_sprite(UINT16 value);
-void create_rand_block();
+void create_rand_block(void);
 UINT8 row_to_pixels(UINT8 r);
 UINT8 col_to_pixels(UINT8 c);
 void draw_tile(UINT8 r, UINT8 c, UINT8 number_tile, UINT8 tile_offset);

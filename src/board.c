@@ -1,26 +1,35 @@
 #include "board.h"
 
+UINT16 board[BOARD_SIZE][BOARD_SIZE];
+UINT8 row = 0;
+UINT8 col = 0;
+UINT16 score = 0;
+UINT8 filled_blocks = 0;
+
+UBYTE moved = 0;
+UBYTE winner = 0;
+
 
 /**
  * @brief Load board graphics
- * 
+ *
  */
-void init_board(){
-    set_bkg_data(0 ,BLOCK_TILES, block_tiles); 
-    set_bkg_data(BLOCK_TILES ,11, number_tiles); 
+void init_board(void){
+    set_bkg_data(0 ,BLOCK_TILES, block_tiles);
+    set_bkg_data(BLOCK_TILES ,11, number_tiles);
 }
 
 
 /**
  * @brief Reset board to all 0's and pick starter blocks
- * 
+ *
  */
-void reset_board(){
+void reset_board(void){
     winner = 0;
 
     // Clear all values from board
-    for(row = 0;row<BOARD_SIZE;row++){
-        for(col = 0;col<BOARD_SIZE;col++){
+    for(row = 0; row < BOARD_SIZE; row++){
+        for(col = 0; col < BOARD_SIZE; col++){
             board[row][col] = 0;
         }
     }
@@ -39,10 +48,11 @@ void reset_board(){
 
 /**
  * @brief Create a new random block on an empty board space
- * 
+ *
  */
-void create_rand_block(){
-    while(1){
+void create_rand_block(void){
+    UINT8 attempts = 0;
+    while(attempts < BOARD_SIZE * BOARD_SIZE){
         // pick random board tile
         row = rand_num(0, BOARD_SIZE - 1);
         col = rand_num(0, BOARD_SIZE - 1);
@@ -52,21 +62,23 @@ void create_rand_block(){
             board[row][col] = rand_num(1,2) * 2;    // add random 2 or 4 into block
             return;
         }
+        attempts++;
     }
+    // If no empty space, do nothing (should not happen after valid move)
 }
 
 
 /**
  * @brief Print board to screen using background tiles
- * 
+ *
  */
-void draw_board(){
+void draw_board(void){
     UINT8 block_row, block_col = 0;
     UINT8 number_tile;
-    filled_blocks = 0; 
+    filled_blocks = 0;
 
-    for(row = 0;row<BOARD_SIZE;row++){
-        for(col = 0;col<BOARD_SIZE;col++){
+    for(row = 0; row < BOARD_SIZE; row++){
+        for(col = 0; col < BOARD_SIZE; col++){
             block_row = row_to_pixels(row);
             block_col = col_to_pixels(col);
             number_tile = number_sprite(board[row][col]);
@@ -85,8 +97,8 @@ void draw_board(){
 
 /**
  * @brief Draw tile to board grid
- * 
- * @param r Board row in pixels 
+ *
+ * @param r Board row in pixels
  * @param c Board col in pixels
  * @param number_tile BKG tile number for value
  * @param tile_offset memory position of tile graphics
@@ -108,7 +120,7 @@ void draw_tile(UINT8 r, UINT8 c, UINT8 number_tile, UINT8 tile_offset){
 
 /**
  * @brief Slide board, merge blocks, and add new tile
- * 
+ *
  * @param d Direction to slide the tiles
  */
 void update_board(direction d){
@@ -133,7 +145,7 @@ void update_board(direction d){
 
 /**
  * @brief Merge 2 matching blocks next to each other in the move direction
- * 
+ *
  * @param r1 start row
  * @param c1 start col
  * @param r2 destination row
@@ -150,44 +162,51 @@ void merge_block(UINT8 r1, UINT8 c1, UINT8 r2, UINT8 c2){
 
 /**
  * @brief Scan entire board and apply a function to pairs of blocks
- * 
+ *
  * @param update_blocks Pointer to func that modifies 2 blocks
  * @param d Direction tiles moved
  */
 void scan_board(void (*update_blocks)(UINT8 r1, UINT8 c1, UINT8 r2, UINT8 c2), direction d){
-    UINT8 buffer = 0;
-    for(row = 0; row < BOARD_SIZE; row++){
-        for(col = 0; col < BOARD_SIZE; col++){
-            // shift board left
-            if(d == LEFT && col+1<BOARD_SIZE){
-                update_blocks(row, col, row, col+1);
-
-            // shift board right
-            }else if(d == RIGHT){
-                buffer = BOARD_SIZE - col;
-                if(col > 0 && buffer > 0){
-                    update_blocks(row, buffer, row, buffer - 1);
-                }
-
-            // shift board up
-            }else if(d == UP && row + 1 < BOARD_SIZE){
-                update_blocks(row, col, row+1, col);
-
-            // shift board down
-            }else if(d == DOWN){
-                buffer = BOARD_SIZE - row;
-                if(row > 0 && buffer > 0){
-                    update_blocks(buffer, col, buffer - 1, col);
+    switch(d){
+        case LEFT:
+            for(row = 0; row < BOARD_SIZE; row++){
+                for(col = 0; col < BOARD_SIZE; col++){
+                    if(col + 1 < BOARD_SIZE){
+                        update_blocks(row, col, row, col + 1);
+                    }
                 }
             }
-        }
+            break;
+        case RIGHT:
+            for(row = 0; row < BOARD_SIZE; row++){
+                for(col = BOARD_SIZE - 1; col > 0; col--){
+                    update_blocks(row, col, row, col - 1);
+                }
+            }
+            break;
+        case UP:
+            for(col = 0; col < BOARD_SIZE; col++){
+                for(row = 0; row < BOARD_SIZE; row++){
+                    if(row + 1 < BOARD_SIZE){
+                        update_blocks(row, col, row + 1, col);
+                    }
+                }
+            }
+            break;
+        case DOWN:
+            for(col = 0; col < BOARD_SIZE; col++){
+                for(row = BOARD_SIZE - 1; row > 0; row--){
+                    update_blocks(row, col, row - 1, col);
+                }
+            }
+            break;
     }
 }
 
 
 /**
  * @brief Slide all board tiles a given direction
- * 
+ *
  * @param d Arrow direction
  */
 void slide_board(direction d){
@@ -197,14 +216,14 @@ void slide_board(direction d){
     while(moved){
         moved = 0;
         scan_board(move_block, d);
-        draw_board(); // redraw board as blocks move to add animation
+        draw_board();
     }
 
 }
 
 /**
  * @brief Shift block to new row/col
- * 
+ *
  * @param r1 start row
  * @param c1 start col
  * @param r2 destination row
@@ -221,7 +240,7 @@ void move_block(UINT8 r1, UINT8 c1, UINT8 r2, UINT8 c2){
 
 /**
  * @brief Convert number to bkg sprites and draw on board
- * 
+ *
  * @param value block value
  */
 UINT8 number_sprite(UINT16 value){
@@ -236,18 +255,18 @@ UINT8 number_sprite(UINT16 value){
         case 256: return BLOCK_TILES + 7;
         case 512: return BLOCK_TILES + 8;
         case 1024: return BLOCK_TILES + 9;
-        case 2048: 
+        case 2048:
             winner = 1; // trigger winner
             return BLOCK_TILES + 10;
-        default: return 0; 
+        default: return 0;
     }
 }
 
 /**
  * @brief Convert board row to screen coordinates
- * 
+ *
  * @param r Board row number
- * @return UINT8 
+ * @return UINT8
  */
 UINT8 row_to_pixels(UINT8 r){
     return (BLOCK_UNIT * r) + BOARD_Y_OFFSET;
@@ -255,10 +274,10 @@ UINT8 row_to_pixels(UINT8 r){
 
 
 /**
- * @brief Convert board coloumn to screen coordinates
- * 
- * @param c Board coloumn number
- * @return UINT8 
+ * @brief Convert board column to screen coordinates
+ *
+ * @param c Board column number
+ * @return UINT8
  */
 UINT8 col_to_pixels(UINT8 c){
     return (BLOCK_UNIT * c) + BOARD_X_OFFSET;
