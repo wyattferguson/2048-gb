@@ -1,6 +1,20 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// GBDK type compatibility for editors/language servers
+#ifndef UBYTE
+#define UBYTE unsigned char
+#endif
+#ifndef UINT8
+#define UINT8 unsigned char
+#endif
+#ifndef UINT16
+#define UINT16 unsigned short
+#endif
+#ifndef UINT32
+#define UINT32 unsigned long
+#endif
+
 // screen in 8px chunks
 #define GRID_HEIGHT 18
 #define GRID_WIDTH 20
