@@ -13,6 +13,7 @@ This is a working port of 2048 for the classic Game Boy. Its a addictive little 
 - [GBDK 2020 Docs](https://gbdk.org/docs/api/index.html) - GBDK-2020 Documentation.
 - [GBDev.io](https://gbdev.io/resources.html#introduction) - A curated list of awesome Game Boy Development resources, tools, and docs.
 - [TileMap Studio](https://github.com/Rangi42/tilemap-studio) - A tilemap editor for Game Boy, Color, Advance, DS, and SNES projects.
+- [2048 History](https://en.wikipedia.org/wiki/2048_(video_game))
 
 
 ## License
