@@ -4,7 +4,7 @@ CC = lcc
 
 CFLAGS = -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -Wf--debug -c
 
-LDFLAGS = -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -Wf--debug
+LDFLAGS = -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -Wf--debug -Wm-yn 2048
 
 SRC = src/main.c src/board.c src/font.c src/screens.c src/utils.c
 
