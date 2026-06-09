@@ -2,9 +2,9 @@ PROJECTNAME = 2048
 
 CC = lcc
 
-CFLAGS = -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -Wf--debug -c
+CFLAGS = -Wa-l -Wl-m -DUSE_SFR_FOR_REG -debug -c
 
-LDFLAGS = -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -Wf--debug -Z -Wm-yoA -Wm-yn"2048"
+LDFLAGS = -Wa-l -Wl-m -debug -Z -Wm-yoA -Wm-yn"2048"
 
 SRC = src/main.c src/board.c src/font.c src/screens.c src/utils.c src/sprites/block_tiles.c src/sprites/number_tiles.c src/sprites/logo_data.c src/sprites/logo_map.c src/sprites/trophy_data.c src/sprites/trophy_map.c
 
