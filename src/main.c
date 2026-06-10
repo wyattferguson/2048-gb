@@ -20,47 +20,54 @@ void setup(void){
     show_title_screen();
 }
 
+void new_game(void){
+    seed_rand();
+    show_play_screen();
+}
 
 void main(void) {
-    UINT8 btn = 0;
+    UINT8 button_pressed = 0;
 
     setup();
 
     while (1) {
-        btn = waitpad(J_A | J_B | J_UP | J_DOWN | J_LEFT | J_RIGHT | J_START);
-        waitpadup();
+        button_pressed = joypad();
 
     	switch (state){
             case TITLE:
                 seed_rand();
-                if(btn == J_START) {
-                    show_play_screen();
+                if(button_pressed == J_START) {
+                    new_game();
                 }
                 break;
 
             case PLAYING:
-                if(btn == J_UP){
+                if(button_pressed == J_UP){
                     update_board(UP);
-                }else if(btn == J_DOWN){
+                }else if(button_pressed == J_DOWN){
                     update_board(DOWN);
-                }else if(btn == J_RIGHT){
+                }else if(button_pressed == J_RIGHT){
                     update_board(RIGHT);
-                }else if(btn == J_LEFT){
+                }else if(button_pressed == J_LEFT){
                     update_board(LEFT);
+                }else if(button_pressed == J_SELECT){
+                    new_game();
                 }
 
                 break;
 
             case WINNER:
-                if(btn == J_START){
+                if(button_pressed == J_START){
                     show_title_screen();
                 }
                 break;
 
             case GAMEOVER:
-                if(btn == J_START){
+                if(button_pressed == J_START){
                     show_title_screen();
                 }
+                break;
+            default:
                 break;
         }
 
