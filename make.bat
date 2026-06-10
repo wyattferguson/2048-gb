@@ -1,12 +1,40 @@
-lcc -Wa-l -Wl-m -debug -c -o ./build/main.o ./src/main.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/board.o ./src/board.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/font.o ./src/font.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/screens.o ./src/screens.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/utils.o ./src/utils.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/block_tiles.o ./src/sprites/block_tiles.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/number_tiles.o ./src/sprites/number_tiles.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/logo_data.o ./src/sprites/logo_data.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/logo_map.o ./src/sprites/logo_map.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/trophy_data.o ./src/sprites/trophy_data.c
-lcc -Wa-l -Wl-m -debug -c -o ./build/trophy_map.o ./src/sprites/trophy_map.c
-lcc -Z -Wa-l -Wl-m -debug -Wm-yoA -Wm-yn"2048" -o ./2048.gb ./build/main.o ./build/board.o ./build/font.o ./build/screens.o ./build/utils.o ./build/block_tiles.o ./build/number_tiles.o ./build/logo_data.o ./build/logo_map.o ./build/trophy_data.o ./build/trophy_map.o
+@echo off
+setlocal enabledelayedexpansion
+
+set GAME_NAME=2048
+set CC=lcc
+set CFLAGS=-Wa-l -Wl-m -debug -c
+set LDFLAGS=-Wa-l -Wl-m -debug -Z -Wm-yoA -Wm-yn"%GAME_NAME%"
+set BUILD_DIR=build
+set OUT=%GAME_NAME%.gb
+
+if not exist %BUILD_DIR% mkdir %BUILD_DIR%
+
+echo Compiling %GAME_NAME%
+rem Auto-discover all .c files under src\ (recursive)
+set OBJ_FILES=
+for /R src %%f in (*.c) do (
+    rem Strip everything up to "src\" to get relative path
+    set "rel=%%f"
+    set "rel=!rel:*src\=!"
+    set "obj=%BUILD_DIR%\!rel:.c=.o!"
+
+    rem Create subdirectory if needed
+    for %%d in (!obj!) do if not exist %%~dpd mkdir %%~dpd
+
+    echo Compiling %%f -^> !obj!
+    %CC% %CFLAGS% -o !obj! %%f
+
+    set OBJ_FILES=!OBJ_FILES! !obj!
+)
+
+if "%OBJ_FILES%"=="" (
+    echo No .c files found under src\!
+    exit /b 1
+)
+
+echo.
+echo Linking...
+%CC% %LDFLAGS% -o %OUT% %OBJ_FILES%
+
+echo Done: %OUT%

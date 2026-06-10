@@ -19,7 +19,10 @@ UINT8 rand_num(UINT8 low, UINT8 high){
  *
  */
 void seed_rand(void){
-    UINT16 seed = LY_REG;
-    seed |= (UINT16)DIV_REG << 8;
+    // Accumulate entropy each frame so seed differs even when
+    // LY_REG/DIV_REG return the same values every frame.
+    static UINT16 seed = 0;
+    seed += LY_REG;
+    seed ^= (UINT16)DIV_REG << 8;
     initrand(seed);
 }
