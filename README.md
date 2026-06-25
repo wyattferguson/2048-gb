@@ -27,18 +27,19 @@ This is a working port of 2048 for the classic Game Boy. Its a addictive little 
 
 [MIT license](https://github.com/wyattferguson/2048-gb/blob/master/LICENSE)
 
-## :postbox: Contact & Support
+## Contact + Support
 
 Created by [Wyatt Ferguson](https://github.com/wyattferguson)
 
 For any questions or comments heres how you can reach me:
 
-### :octocat: Follow me on [Github @wyattferguson](https://github.com/wyattferguson)
+**:octopus: Follow me on [Github @wyattferguson](https://github.com/wyattferguson)**
 
-### :mailbox_with_mail: Email me at [wyattxdev@duck.com](wyattxdev@duck.com)
+**:mailbox_with_mail: Email me at [wyattxdev@duck.com](wyattxdev@duck.com)**
 
-### :tropical_drink: Follow on [BlueSky @wyattf](https://wyattf.bsky.social)
+**:tropical_drink: Follow on [BlueSky @wyattf](https://wyattf.bsky.social)**
 
 If you find this useful and want to tip me a little coffee money:
 
-### :coffee: [Buy Me A Coffee](https://www.buymeacoffee.com/wyattferguson)
+**:coffee: [Buy Me A Coffee](https://www.buymeacoffee.com/wyattferguson)**
+
